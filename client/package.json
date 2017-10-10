@@ -30,7 +30,6 @@
     "react-native": "^0.48.4",
     "react-native-animatable": "^1.2.4",
     "react-native-aws3": "^0.0.8",
-    "react-native-elements": "^0.17.0",
-    "react-native-progress": "^3.4.0"
+    "react-native-elements": "^0.17.0"
   }
 }

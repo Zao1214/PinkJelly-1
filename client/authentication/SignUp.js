@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { StyleSheet, View, Text, KeyboardAvoidingView, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 import * as firebase from 'firebase';
@@ -17,7 +17,7 @@ export default class SignUp extends Component{
   onSignUp() {
     const { email, password } = this.state;
     if (email === '') {
-      this.setState({ 
+      this.setState({
         emailType: false,
       });
     } else {
@@ -27,11 +27,11 @@ export default class SignUp extends Component{
     }
 
     if (password === '') {
-      this.setState({ 
+      this.setState({
         passwordType: false,
       });
     } else {
-      this.setState({ 
+      this.setState({
         passwordType: true,
       });
     }
@@ -54,11 +54,11 @@ export default class SignUp extends Component{
   onConfirmPassword(confirmPassword) {
     const { password, confirmPasswordType } = this.state;
     if (password !== confirmPassword) {
-      this.setState({ 
+      this.setState({
         confirmPasswordType: false,
       });
     } else {
-      this.setState({ 
+      this.setState({
         confirmPasswordType: true,
       });
     }
@@ -68,66 +68,71 @@ export default class SignUp extends Component{
     const { emailType, passwordType, confirmPasswordType } = this.state;
     const { setSignPage } = this.props;
     return (
-      <View style={styles.signUpContainer}>
-        <View style={styles.logoDistrict}>
-          <Paw />
-        </View>
-        <View style={styles.signupForm}>
-          <FormInput
-            onChangeText={value => this.setState({ email: value })}
-            placeholder="EMAIL ADDRESS"
-            placeholderTextColor="#fff"
-            containerStyle={styles.inputContainerStyle}
-            inputStyle={styles.inputStyle}
-          />
-          {(!emailType)
-            ? <FormValidationMessage>Enter Email</FormValidationMessage>
-            : null
-          }
-          <FormInput
-            onChangeText={value => this.setState({ password: value })}
-            placeholder="PASSWORD"
-            placeholderTextColor="#fff"
-            containerStyle={styles.inputContainerStyle}
-            inputStyle={styles.inputStyle}
-            secureTextEntry
-          />
-          {(!passwordType)
-            ? <FormValidationMessage>Enter Password</FormValidationMessage>
-            : null
-          }
-          <FormInput
-            onChangeText={value => this.onConfirmPassword(value)}
-            placeholder="CONFIRM PASSWORD"
-            placeholderTextColor="#fff"
-            containerStyle={styles.inputContainerStyle}
-            inputStyle={styles.inputStyle}
-            secureTextEntry
-          />
-          {(!confirmPasswordType)
-            ? <FormValidationMessage>Incorrect Password</FormValidationMessage>
-            : null
-          }
-          <View style={styles.buttonWrapper}>
-            <Button 
-              small 
-              onPress={() => this.onSignUp()} 
-              title="SIGN UP" 
-              buttonStyle={styles.buttonStyle} 
-              backgroundColor="transparent" 
-              color="#fff"/>
-            <Text onPress={() => setSignPage()} style={styles.backToSignIn}>BACK TO SIGNIN</Text>
+      <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
+        <ScrollView contentContainerStyle={styles.signUpContainer}>
+          <View style={styles.logoDistrict}>
+            <Paw />
           </View>
-        </View>
-      </View>
+          <View style={styles.signupForm}>
+            <FormInput
+              onChangeText={value => this.setState({ email: value })}
+              placeholder="EMAIL ADDRESS"
+              placeholderTextColor="#fff"
+              containerStyle={styles.inputContainerStyle}
+              inputStyle={styles.inputStyle}
+            />
+            {(!emailType)
+              ? <FormValidationMessage>Enter Email</FormValidationMessage>
+              : null
+            }
+            <FormInput
+              onChangeText={value => this.setState({ password: value })}
+              placeholder="PASSWORD"
+              placeholderTextColor="#fff"
+              containerStyle={styles.inputContainerStyle}
+              inputStyle={styles.inputStyle}
+              secureTextEntry
+            />
+            {(!passwordType)
+              ? <FormValidationMessage>Enter Password</FormValidationMessage>
+              : null
+            }
+            <FormInput
+              onChangeText={value => this.onConfirmPassword(value)}
+              placeholder="CONFIRM PASSWORD"
+              placeholderTextColor="#fff"
+              containerStyle={styles.inputContainerStyle}
+              inputStyle={styles.inputStyle}
+              secureTextEntry
+            />
+            {(!confirmPasswordType)
+              ? <FormValidationMessage>Incorrect Password</FormValidationMessage>
+              : null
+            }
+            <View style={styles.buttonWrapper}>
+              <Button
+                small
+                onPress={() => this.onSignUp()}
+                title="SIGN UP"
+                buttonStyle={styles.buttonStyle}
+                backgroundColor="transparent"
+                color="#fff"/>
+              <Text onPress={() => setSignPage()} style={styles.backToSignIn}>BACK TO SIGNIN</Text>
+            </View>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  signUpContainer: {
+  wrapper: {
     flex: 1,
     backgroundColor: '#82b1ff',
+  },
+  signUpContainer: {
+    flex: 1,
   },
   logoDistrict: {
     flex: 1,
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
   },
   inputStyle: {
+    paddingVertical: 12,
     color: '#222',
     fontWeight: '100',
   },

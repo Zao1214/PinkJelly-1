@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, KeyboardAvoidingView, ScrollView, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 import * as firebase from 'firebase';
@@ -21,26 +21,26 @@ export default class SignIn extends Component{
     const { email, password } = this.state;
     const { onVerifyEmail, onCheckLoggedIn } = this.props;
     if (email === '') {
-      this.setState({ 
+      this.setState({
         emailType: false,
       });
     } else {
-      this.setState({ 
+      this.setState({
         emailType: true,
       });
     }
 
     if (password === '') {
-      this.setState({ 
+      this.setState({
         passwordType: false,
       });
     } else {
-      this.setState({ 
+      this.setState({
         passwordType: true,
       });
     }
 
-    this.setState({ 
+    this.setState({
       processing: true,
     });
 
@@ -54,7 +54,7 @@ export default class SignIn extends Component{
       })
       .catch(err => {
         alert(err);
-        this.setState({ 
+        this.setState({
           processing: false,
         });
       });
@@ -74,50 +74,52 @@ export default class SignIn extends Component{
       return <SignUp setSignPage={this.setSignPage.bind(this)}/>;
     } else {
       return (
-        <KeyboardAvoidingView style={styles.signInContainer} behavior="padding">
-          <View style={styles.logoDistrict}>
-            <Paw />
-          </View>
-          <View style={styles.loginForm}>
-            <FormInput
-              onChangeText={value => this.setState({ email: value })}
-              placeholder="EMAIL ADDRESS"
-              placeholderTextColor="#fff"
-              containerStyle={styles.inputContainerStyle}
-              inputStyle={styles.inputStyle}
-            />
-            {(!emailType)
-              ? <FormValidationMessage>Enter Email</FormValidationMessage>
-              : null
-            }
-            <FormInput
-              onChangeText={value => this.setState({ password: value })}
-              placeholder="PASSWORD"
-              placeholderTextColor="#fff"
-              containerStyle={styles.inputContainerStyle}
-              inputStyle={styles.inputStyle}
-              secureTextEntry
-            />
-            {(!passwordType)
-              ? <FormValidationMessage>Enter Password</FormValidationMessage>
-              : null
-            }
-            {(!processing)
-              ? (<View style={styles.buttonWrapper}>
-                  <Button 
-                    small 
-                    onPress={() => this.onSignIn()} 
-                    title="SIGN IN" 
-                    buttonStyle={styles.buttonStyle} 
-                    backgroundColor="transparent" 
-                    color="#fff"/>
-                  <Text onPress={() => this.setSignPage()} style={styles.signUp}>NEW ACCOUNT</Text>
-                </View>)
-              : (<View style={styles.buttonWrapper}>
-                  <ActivityIndicator color="#fff" size="large" />
-                </View>)
-            }
-          </View>
+        <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
+          <ScrollView contentContainerStyle={styles.signInContainer}>
+            <View style={styles.logoDistrict}>
+              <Paw />
+            </View>
+            <View style={styles.loginForm}>
+              <FormInput
+                onChangeText={value => this.setState({ email: value })}
+                placeholder="EMAIL ADDRESS"
+                placeholderTextColor="#fff"
+                containerStyle={styles.inputContainerStyle}
+                inputStyle={styles.inputStyle}
+              />
+              {(!emailType)
+                ? <FormValidationMessage>Enter Email</FormValidationMessage>
+                : null
+              }
+              <FormInput
+                onChangeText={value => this.setState({ password: value })}
+                placeholder="PASSWORD"
+                placeholderTextColor="#fff"
+                containerStyle={styles.inputContainerStyle}
+                inputStyle={styles.inputStyle}
+                secureTextEntry
+              />
+              {(!passwordType)
+                ? <FormValidationMessage>Enter Password</FormValidationMessage>
+                : null
+              }
+              {(!processing)
+                ? (<View style={styles.buttonWrapper}>
+                    <Button
+                      small
+                      onPress={() => this.onSignIn()}
+                      title="SIGN IN"
+                      buttonStyle={styles.buttonStyle}
+                      backgroundColor="transparent"
+                      color="#fff"/>
+                    <Text onPress={() => this.setSignPage()} style={styles.signUp}>NEW ACCOUNT</Text>
+                  </View>)
+                : (<View style={styles.buttonWrapper}>
+                    <ActivityIndicator color="#fff" size="large" />
+                  </View>)
+              }
+            </View>
+          </ScrollView>
         </KeyboardAvoidingView>
       );
     }
@@ -125,9 +127,12 @@ export default class SignIn extends Component{
 }
 
 const styles = StyleSheet.create({
-  signInContainer: {
+  wrapper: {
     flex: 1,
     backgroundColor: '#82b1ff',
+  },
+  signInContainer: {
+    flex: 1,
   },
   logoDistrict: {
     flex: 1,
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
   },
   inputStyle: {
+    paddingVertical: 12,
     color: '#222',
     fontWeight: '100',
   },

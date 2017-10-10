@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { SimpleLineIcons, Entypo } from '@expo/vector-icons';
 
@@ -19,7 +19,7 @@ const ControlBar = ({ screen, snapshot, setDetectionData, setYoloType, yoloType 
       return (
         <View style={controlBar}>
           <View style={styles.typeChange}>
-            <Entypo name="cycle" size={32} color="#fff" onPress={() => setYoloType()}/>
+            <Text style={styles.typeChangeText} onPress={() => setYoloType()}>{yoloType}</Text>
           </View>
           <View style={styles.circle} >
             <SimpleLineIcons name={icon} size={32} color="#fff" onPress={() => snapshot()}/>
@@ -53,8 +53,15 @@ const styles = StyleSheet.create({
   typeChange: {
     position: 'absolute',
     top: 12,
-    left: '50%',
-    transform: [{ translateX: -12 }],
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#fff',
+    borderRadius: 4,
+    padding: 4,
+  },
+  typeChangeText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
