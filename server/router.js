@@ -3,6 +3,7 @@ const runDarknet = require('./runDarknet');
 
 router.post('/', (req, res) => {
   let reqBodyTest = true;
+  
   if (req.body.userEmail) {
     if (!req.body.userEmail.includes('@')) {
       reqBodyTest = false;

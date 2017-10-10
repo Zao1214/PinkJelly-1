@@ -8,16 +8,16 @@ const getImageSize = require('./getImageSize');
 const runDarknet = (userEmail, yoloType) =>
   new Promise((resolve, reject) => {
     const imageUrlS3 = `${process.env.AWS_S3_BUCKET_IMAGE_URL}/${userEmail}-image.jpg`;
-    
     let execStatement = null;
+    
     switch (yoloType) {
       case 'simple':
         downloadS3(imageUrlS3, `./darknet/${userEmail}-super.jpg`, () => console.log('download complete'));
-        execStatement = `./darknet detect cfg/yolo.cfg yolo.weights ${userEmail}-super.jpg`;
+        execStatement = `./darknet detect cfg/yolo.cfg yolo.weights ${userEmail}-super.jpg -thresh .5`;
         break;
       case 'funny':
         downloadS3(imageUrlS3, `./darknet/${userEmail}-super.jpg`, () => console.log('download complete'));
-        execStatement = `./darknet detector test cfg/combine9k.data cfg/yolo9000.cfg yolo9000.weights ${userEmail}-super.jpg`;
+        execStatement = `./darknet detector test cfg/combine9k.data cfg/yolo9000.cfg yolo9000.weights ${userEmail}-super.jpg -thresh .5`;
         break;
       default:
         console.log('runDarknet invalid yoloType');

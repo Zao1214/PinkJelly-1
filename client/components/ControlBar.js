@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   typeChangeText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 
