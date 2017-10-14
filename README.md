@@ -15,12 +15,12 @@ https://exp.host/@zao1214/client
 3. experience the magic (press the circular-object-detected-button and hear its label in English)
 
 !IMPORTANT notice : 
-  currently, machine learning behind simple camera is tiny-yolo
+  * currently, machine learning behind simple camera is tiny-yolo
   (current server with 1G memory can only hold tiny; which also means it will crash on funny(yolo9000) camera)
-  In order to change yolo version, code can be found in runDarknet.js where I have written some comment
-  If we replace AWS EC2 server to c4.large, yolo2 and yolo9000 can be used and it will take 8-10 seconds
-  If we replace AWS EC2 server to any GPU server, it takes 3-4 seconds
-  If we change server code to preload weights on server, every process will take 3seconds less, (~GPU 0~1seconds)
+  * In order to change yolo version, code can be found in runDarknet.js where I have written some comment
+  * If we replace AWS EC2 server to c4.large, yolo2 and yolo9000 can be used and it will take 8-10 seconds
+  * If we replace AWS EC2 server to any GPU server, it takes 3-4 seconds
+  * If we change server code to preload weights on server, every process will take 3seconds less, (~GPU 0~1seconds)
   (I personally like to have loading section, so I decided not to put weights on)
 
 Credit :
