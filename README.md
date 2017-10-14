@@ -16,7 +16,7 @@ https://exp.host/@zao1214/client
 
 !IMPORTANT notice : 
   * currently, machine learning behind simple camera is tiny-yolo
-  (current server with 1G memory can only hold tiny; which also means it will crash on funny(yolo9000) camera)
+  (current server with 1G memory can only hold tiny, which also means it will crash on funny(yolo9000) camera)
   * In order to change yolo version, code can be found in runDarknet.js where I have written some comment
   * If we replace AWS EC2 server to c4.large, yolo2 and yolo9000 can be used and it will take 8-10 seconds
   * If we replace AWS EC2 server to any GPU server, it takes 3-4 seconds
