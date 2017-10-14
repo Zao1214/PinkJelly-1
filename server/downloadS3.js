@@ -14,6 +14,7 @@ const downloadS3 = (uri, fileName, callBack) => {
     if (err) {
       console.log('download failed');
     }
+    
     request(uri).pipe(fs.createWriteStream(fileName)).on('close', callBack);
   });
 };

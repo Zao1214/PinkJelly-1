@@ -4,8 +4,8 @@ const chaiAsPromised = require("chai-as-promised");
 const chaiHttp = require('chai-http');
 
 const app = require('../index');
-const beautifyData = require('../beautifyData');
-const beautifyDataHelper = require('../beautifyDataHelper');
+const formatToUsableData = require('../formatToUsableData');
+const formatHelper = require('../formatHelper');
 const getImageSize = require('../getImageSize');
 const downloadS3 = require('../downloadS3');
 const runDarknet = require('../runDarknet');
@@ -29,16 +29,16 @@ describe('#functions in this server', () => {
   
   const imageSize = { height: 100, width: 100 };
 
-  describe('beautifyData', () => {
+  describe('formatToUsableData', () => {
 
     it('should export a function that returns an array', () => {
-      expect(beautifyData).to.be.a('function');
-      expect(beautifyData(data, imageSize)).to.be.an('array');
+      expect(formatToUsableData).to.be.a('function');
+      expect(formatToUsableData(data, imageSize)).to.be.an('array');
     });
     
   });
 
-  describe('beautifyDataHelper', () => {
+  describe('formatHelper', () => {
 
     let testData = data.replace(/]|\[|,/g, '');
     testData = testData.split('\n');
@@ -51,9 +51,9 @@ describe('#functions in this server', () => {
     });
 
     it('should export a function that returns an object', () => {
-      expect(beautifyDataHelper).to.be.a('function');
+      expect(formatHelper).to.be.a('function');
       newTestData.forEach((eachNewData) => {
-        expect(beautifyDataHelper((eachNewData, eachNewData.length, imageSize.height, imageSize.width))).to.be.an('object');
+        expect(formatHelper((eachNewData, eachNewData.length, imageSize.height, imageSize.width))).to.be.an('object');
       });
     });
 
@@ -66,7 +66,7 @@ describe('#functions in this server', () => {
         getImageSize(imageUrlS3).should.eventually.have.property('height'),
         getImageSize(imageUrlS3).should.eventually.have.property('width')
       ]).should.notify(done);
-    }).timeout(3000);
+    }).timeout(10000);
   });
 
   describe('downlaodS3', () => {

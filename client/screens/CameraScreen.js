@@ -69,7 +69,6 @@ export default class CameraScreen extends Component {
               setDetectionData(res.data);
             })
             .then(() => setLoadingStatus(false))
-            .catch(err => console.log(err));
           })
           .catch(err => console.log(err));
     }
