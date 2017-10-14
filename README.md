@@ -20,9 +20,10 @@ https://exp.host/@zao1214/client
   * In order to change yolo version, code can be found in runDarknet.js where I have written some comment
   * If we replace AWS EC2 server to c4.large, yolo2 and yolo9000 can be used and it will take 8-10 seconds
   * If we replace AWS EC2 server to any GPU server, it takes 3-4 seconds
-  * If we change server code to preload weights on server, every process will take 3seconds less, (~GPU 0~1seconds)
+  * If we change server code to preload weights on server, every process will take 3seconds less, (GPU 0-1seconds)
   (I personally like to have loading section, so I decided not to put weights on)
 
+```
 Credit :
 Darknet@article{redmon2016yolo9000,
   title={YOLO9000: Better, Faster, Stronger},
@@ -30,3 +31,4 @@ Darknet@article{redmon2016yolo9000,
   journal={arXiv preprint arXiv:1612.08242},
   year={2016}
 }
+```
