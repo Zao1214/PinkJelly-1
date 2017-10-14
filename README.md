@@ -5,7 +5,7 @@ Instant-object-recognition && speech App, easy as 1, 2 ,3!
 ### Download our App using Expo
 https://exp.host/@zao1214/client
 (
-  if for reason, doesn't work, then it is probably b/c we stopped the server. 
+  if for some reason doesn't work, then it is probably b/c we stopped the server. 
   Give us a notice and we will be happy to re-run the server!
 )
 
